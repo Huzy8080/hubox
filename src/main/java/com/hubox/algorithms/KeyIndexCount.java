@@ -44,7 +44,7 @@ public class KeyIndexCount {
             System.out.println(staff);
         }
         keyIndexCount.sort(a, 5);
-        System.out.println("=====sort=====");
+        System.out.println("=====sorted=====");
         for (Staff staff : a) {
             System.out.println(staff);
         }
@@ -54,7 +54,7 @@ public class KeyIndexCount {
     public Staff[] initStaff(int R) {
         Staff[] a = new Staff[10];
         a[0] = new Staff("White", 1);
-        a[1] = new Staff("Anderson", 2);
+        a[1] = new Staff("Anders", 2);
         a[2] = new Staff("Brown", 3);
         a[3] = new Staff("Davis", 3);
         a[4] = new Staff("Garcia", 4);
@@ -74,7 +74,7 @@ public class KeyIndexCount {
 
         @Override
         public String toString() {
-            return name + " " + key;
+            return name + "\t " + key;
         }
     }
 
