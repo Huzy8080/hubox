@@ -10,6 +10,9 @@ package com.hubox.algorithms;
  */
 public class LSD {
 
+    private LSD() {
+    }
+
     /**
      * 通过前w个字符将a排序
      *
