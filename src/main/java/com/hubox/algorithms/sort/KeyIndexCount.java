@@ -1,4 +1,4 @@
-package com.hubox.algorithms;
+package com.hubox.algorithms.sort;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

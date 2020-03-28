@@ -1,4 +1,4 @@
-package com.hubox.algorithms;
+package com.hubox.algorithms.sort;
 
 /**
  * 高位优先排序
