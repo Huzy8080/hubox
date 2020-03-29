@@ -12,9 +12,13 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 public class Quick extends AbstractSort {
 
+    private static final int M = 15;//切换阈值:小数组使用插入排序
+
     // don't instantiate
     private Quick() {
     }
+
+    //========================标准切分=============================
 
     public static void sort(Comparable[] a) {
         StdRandom.shuffle(a);//不依赖于输入
@@ -66,17 +70,81 @@ public class Quick extends AbstractSort {
         return right;
     }
 
-    public static void main(String[] args) {
-        int N = 20;
-        int R = 100;
-        Integer[] a = new Integer[N];
-        for (int i = 0; i < N; i++) {
-            a[i] = RandomUtils.uniform(R);
-        }
-        show(a);
-        System.out.println("=====sorted=====");
-        Quick.sort(a);
-        assert isSorted(a);
-        show(a);
+    //========================三向切分=============================
+
+    public static void sort3Way(Comparable[] a) {
+        StdRandom.shuffle(a);//不依赖于输入
+        sort3Way(a, 0, a.length - 1);
     }
+
+    public static void sort3Way(Comparable[] a, int lo, int hi) {
+        if (hi <= lo) {
+            return;
+        }
+        int lt = lo, gt = hi, i = lo + 1;
+        Comparable v = a[lo];//用于比较的元素
+        while (i <= gt) {
+            int cmp = a[i].compareTo(v);
+            if (cmp < 0) {//将<v的元素移动到lt指针处,lt,i均向右移动
+                exchange(a, lt++, i++);
+            } else if (cmp > 0) {//将>v的元素移动到gt指针处,gt向左移动
+                exchange(a, i, gt--);
+            } else {//等于v时,i向左移动
+                i++;
+            }
+            //此时, a[lo...lt-1] < v = a[lt...gt] < a[gt+1...hi]
+            sort3Way(a, lo, lt - 1);
+            sort3Way(a, gt + 1, hi);
+        }
+    }
+
+    //========================字符串三向切分快速排序=============================
+
+    public static void sort3String(String[] a) {
+        StdRandom.shuffle(a);//不依赖于输入
+        sort3String(a, 0, a.length - 1, 0);
+    }
+
+    private static void sort3String(String[] a, int lo, int hi, int d) {
+        //使用插入排序来排序小数组,似乎并没有改善性能
+        if (hi <= lo /* + M */) {
+            /*Insertion.sort(a, lo, hi, d);*/
+            return;
+        }
+        int lt = lo, gt = hi;
+        int v = charAt(a[lo], d);//用于切分字符
+        int i = lo + 1;
+        while (i <= gt) {
+            int t = charAt(a[i], d);//a[i]处的索引
+            if (t < v) {//小于切分字符,放在左边
+                exchange(a, lt++, i++);
+            } else if (t > v) {//大于切分字符,放在右边
+                exchange(a, i, gt--);
+            } else {//相等,原地不动
+                i++;
+            }
+        }
+        //此时, a[lo...lt-1] < v = a[lt...gt] < a[gt+1...hi]
+        sort3String(a, lo, lt - 1, d);
+        if (v >= 0) {
+            sort3String(a, lt, gt, d + 1);
+        }
+        sort3String(a, gt + 1, hi, d);
+    }
+
+
+    //========================测试函数=============================
+    public static void main(String[] args) {
+        String[] a = RandomUtils.getRandomStrArray(20);
+        System.out.println("test sort:");
+        sort(a);
+        assert isSorted(a);
+        System.out.println("test testSort3Way:");
+        sort3Way(a);
+        assert isSorted(a);
+        System.out.println("test testSort3String:");
+        sort3String(a);
+        assert isSorted(a);
+    }
+
 }

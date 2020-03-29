@@ -11,26 +11,13 @@ package com.hubox.algorithms.sort;
  * @version 1.0
  * @date 2020/3/27 20:28
  */
-public class MSD {
+public class MSD extends AbstractSort {
     private MSD() {
     }
 
     private static final int R = 256;//字母表基数
     private static final int M = 20;//小数组的切换阈值.当要排序的数组size<=M时,切换为插入排序
     private static String[] aux;//辅助数组.
-
-    /**
-     * 判断第d个字符是否为结尾字符
-     *
-     * @param s
-     * @param d
-     * @return int
-     * @author HUZHAOYANG
-     * @date 2020/3/27 20:57
-     **/
-    private static int charAt(String s, int d) {
-        return d < s.length() ? s.charAt(d) : -1;
-    }
 
     private static void sort(String[] a) {
         int N = a.length;

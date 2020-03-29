@@ -46,4 +46,9 @@ public abstract class AbstractSort {
         }
         return true;
     }
+
+    //第d个字符的索引位置
+    public static int charAt(String s, int d) {
+        return d < s.length() ? s.charAt(d) : -1;
+    }
 }

@@ -1,10 +1,12 @@
 package com.hubox.util;
 
+import edu.princeton.cs.algs4.Alphabet;
+import edu.princeton.cs.algs4.StdRandom;
+
 import java.util.Random;
 
 /**
  * 随机值工具类
- * 参考《算法》的源码实现
  *
  * @author HUZHAOYANG
  * @version 1.0
@@ -26,33 +28,21 @@ public class RandomUtils {
     private RandomUtils() {
     }
 
-    /**
-     * 生成一个[0,n)的整数
-     *
-     * @param n 上界(不包含)
-     * @return int
-     * @author HUZHAOYANG
-     * @date 2020/3/28 23:05
-     **/
-    public static int uniform(int n) {
-        if (n <= 0) throw new IllegalArgumentException("argument must be positive: " + n);
-        return random.nextInt(n);
+    public static String[] getRandomStrArray(int length) {
+        String[] a = new String[length];
+        for (int i = 0; i < length; i++) {
+            a[i] = randomStr(StdRandom.uniform(3, 18));
+        }
+        return a;
     }
 
-    /**
-     * Rearranges the elements of the specified array in uniformly random order.
-     *
-     * @param a the array to shuffle
-     * @throws IllegalArgumentException if {@code a} is {@code null}
-     */
-    public static void shuffle(Object[] a) {
-        Args.validateNotNull(a);
-        int n = a.length;
-        for (int i = 0; i < n; i++) {
-            int r = i + uniform(n - i);     // between i and n-1
-            Object temp = a[i];
-            a[i] = a[r];
-            a[r] = temp;
+    public static String randomStr(int end) {
+        int length = StdRandom.uniform(2, end);
+        int[] chars = new int[length];
+        Alphabet alphabet = Alphabet.LOWERCASE;
+        for (int i = 0; i < length; i++) {
+            chars[i] = StdRandom.uniform(alphabet.radix());
         }
+        return alphabet.toChars(chars);
     }
 }

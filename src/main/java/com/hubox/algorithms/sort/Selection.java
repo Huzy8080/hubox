@@ -1,6 +1,6 @@
 package com.hubox.algorithms.sort;
 
-import com.hubox.util.RandomUtils;
+import edu.princeton.cs.algs4.StdRandom;
 
 /**
  * 选择排序
@@ -32,7 +32,7 @@ public class Selection extends AbstractSort {
         int R = 100;
         Integer[] a = new Integer[N];
         for (int i = 0; i < N; i++) {
-            a[i] = RandomUtils.uniform(R);
+            a[i] = StdRandom.uniform(R);
         }
         show(a);
         System.out.println("=====sorted=====");
