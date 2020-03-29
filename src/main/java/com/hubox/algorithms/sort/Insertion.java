@@ -1,5 +1,7 @@
 package com.hubox.algorithms.sort;
 
+import com.hubox.util.RandomUtils;
+
 /**
  * 插入排序
  *
@@ -7,8 +9,19 @@ package com.hubox.algorithms.sort;
  * @version 1.0
  * @date 2020/3/27 22:14
  */
-public class Insertion extends Sort {
+public class Insertion extends AbstractSort {
     private Insertion() {
+    }
+
+
+    public static void sort(Comparable[] a) {
+        int N = a.length;
+        for (int i = 1; i < N; i++) {
+            //移动指针i,使i的左侧总是有序!
+            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
+                exchange(a, j, j - 1);
+            }
+        }
     }
 
     /**
@@ -23,6 +36,20 @@ public class Insertion extends Sort {
                 exchange(a, j, j - 1);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        int N = 20;
+        int R = 100;
+        Integer[] a = new Integer[N];
+        for (int i = 0; i < N; i++) {
+            a[i] = RandomUtils.uniform(R);
+        }
+        show(a);
+        System.out.println("=====sorted=====");
+        Quick.sort(a);
+        assert isSorted(a);
+        show(a);
     }
 
 }

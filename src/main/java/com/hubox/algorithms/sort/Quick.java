@@ -10,7 +10,7 @@ import edu.princeton.cs.algs4.StdRandom;
  * @version 1.0
  * @date 2020/3/28 22:36
  */
-public class Quick extends Sort {
+public class Quick extends AbstractSort {
 
     // don't instantiate
     private Quick() {
@@ -72,12 +72,11 @@ public class Quick extends Sort {
         Integer[] a = new Integer[N];
         for (int i = 0; i < N; i++) {
             a[i] = RandomUtils.uniform(R);
-            System.out.println(a[i]);
         }
+        show(a);
         System.out.println("=====sorted=====");
         Quick.sort(a);
-        for (int i = 0; i < N; i++) {
-            System.out.println(a[i]);
-        }
+        assert isSorted(a);
+        show(a);
     }
 }
