@@ -47,7 +47,7 @@ public class Insertion extends AbstractSort {
         }
         show(a);
         System.out.println("=====sorted=====");
-        Quick.sort(a);
+        sort(a);
         assert isSorted(a);
         show(a);
     }

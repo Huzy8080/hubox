@@ -26,10 +26,10 @@ public class Quick3Way extends AbstractSort {
         Comparable v = a[lo];//用于比较的元素
         while (i <= gt) {
             int cmp = a[i].compareTo(v);
-            if (cmp < 0) {//将<v的元素移动到lo指针处,lo,i均向右移动
-                exchange(a, lo++, i++);
-            } else if (cmp > 0) {//将>v的元素移动到hi指针处,hi向左移动
-                exchange(a, hi--, i);
+            if (cmp < 0) {//将<v的元素移动到lt指针处,lt,i均向右移动
+                exchange(a, lt++, i++);
+            } else if (cmp > 0) {//将>v的元素移动到gt指针处,gt向左移动
+                exchange(a, i, gt--);
             } else {//等于v时,i向左移动
                 i++;
             }
@@ -48,7 +48,7 @@ public class Quick3Way extends AbstractSort {
         }
         show(a);
         System.out.println("=====sorted=====");
-        Quick.sort(a);
+        sort(a);
         assert isSorted(a);
         show(a);
     }

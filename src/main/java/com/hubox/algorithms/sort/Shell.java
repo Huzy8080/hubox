@@ -3,27 +3,28 @@ package com.hubox.algorithms.sort;
 import com.hubox.util.RandomUtils;
 
 /**
- * 选择排序
- * 特点:
- * 1.'运行时间'和'输入'无关
- * 2.数据移动最少,与数组大小N成正比
+ * 希尔排序
  *
  * @author HUZHAOYANG
  * @version 1.0
- * @date 2020/3/29 10:23
+ * @date 2020/3/29 11:41
  */
-public class Selection extends AbstractSort {
-    //每次都选择一个最小的值X,将X移动到i的位置.当i移动到数组末尾,即全部有序
+public class Shell extends AbstractSort {
+
+    //
     public static void sort(Comparable[] a) {
         int N = a.length;
-        for (int i = 0; i < N; i++) {
-            int min = i;
-            for (int j = i + 1; j < N; j++) {
-                if (less(a[j], a[min])) {
-                    min = j;
+        int h = 1;
+        while (h < N / 3) {
+            h = h * 3 + 1; // h序列: h=1,4,13,40,121,364,1093...
+        }
+        while (h >= 1) {//对于每个h,使用插入排序
+            for (int i = h; i < N; i++) {
+                for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) {
+                    exchange(a, j, j - h);
                 }
             }
-            exchange(a, i, min);
+            h /= 3;
         }
     }
 
