@@ -1,7 +1,7 @@
 package com.hubox.algorithms.sort;
 
 import com.hubox.util.RandomUtils;
-import edu.princeton.cs.algs4.StdRandom;
+import com.hubox.util.stdlib.StdRandom;
 
 /**
  * 快速排序

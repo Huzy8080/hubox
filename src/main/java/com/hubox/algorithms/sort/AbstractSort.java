@@ -1,7 +1,7 @@
 package com.hubox.algorithms.sort;
 
 
-import com.hubox.util.StdOut;
+import com.hubox.util.stdlib.StdOut;
 
 /**
  * 排序算法

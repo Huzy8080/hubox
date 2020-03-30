@@ -1,7 +1,6 @@
 package com.hubox.util;
 
-import edu.princeton.cs.algs4.Alphabet;
-import edu.princeton.cs.algs4.StdRandom;
+import com.hubox.util.stdlib.StdRandom;
 
 import java.util.Random;
 
