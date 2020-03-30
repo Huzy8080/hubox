@@ -126,7 +126,7 @@ public class Quick extends AbstractSort {
         }
         //此时, a[lo...lt-1] < v = a[lt...gt] < a[gt+1...hi]
         sort3String(a, lo, lt - 1, d);
-        if (v >= 0) {
+        if (v >= 0) {//v = a[lt...gt] 表示第d个字符相等,还是要继续排序的.
             sort3String(a, lt, gt, d + 1);
         }
         sort3String(a, gt + 1, hi, d);
