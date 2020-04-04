@@ -17,6 +17,10 @@ public class Args {
         return null == x;
     }
 
+    public static boolean notNull(Object x) {
+        return !isNull(x);
+    }
+
     // throw an IllegalArgumentException if x is null
     // (x can be of type Object[], double[], int[], ...)
     public static void validateNotNull(Object x) {
