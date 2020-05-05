@@ -38,7 +38,12 @@
             <artifactId>hutool-all</artifactId>
             <version>5.2.5</version>
         </dependency>
-
+        <!-- netty框架，用于编写网络服务器的框架 -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.49.Final</version>
+        </dependency>
 
     </dependencies>
 
